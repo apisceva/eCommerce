@@ -7,6 +7,10 @@
     background-color:#0c8351 !important;
 }
 
+.badge {
+  color: #212529;
+}
+
 .green-highlight {
     color: #008000;
     font-size: 40px;
