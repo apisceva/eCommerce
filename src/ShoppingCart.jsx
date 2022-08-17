@@ -2,16 +2,23 @@ import React, { Component } from "react";
 import Product from "./Product";
 
 export default class ShoppingCart extends Component {
-  state = {
-    products: [
-      { id: 1, productName: "iPhone", price: 8900, quantity: 0 },
-      { id: 2, productName: "Sony Camera", price: 4500, quantity: 0 },
-      { id: 3, productName: "Samsung QLED TV", price: 7745, quantity: 0 },
-      { id: 4, productName: "iPad Pro", price: 12400, quantity: 0 },
-      { id: 5, productName: "Xbox", price: 7780, quantity: 0 },
-      { id: 6, productName: "Dell Monitor", price: 880, quantity: 0 },
-    ],
-  };
+  //Executes when the component is mounted
+  //read about this!!!
+  constructor(props) {
+    super(props); //calling super class's constructor
+    //initialization of the state
+    this.state = {
+      products: [
+        { id: 1, productName: "iPhone", price: 8900, quantity: 0 },
+        { id: 2, productName: "Sony Camera", price: 4500, quantity: 0 },
+        { id: 3, productName: "Samsung QLED TV", price: 7745, quantity: 0 },
+        { id: 4, productName: "iPad Pro", price: 12400, quantity: 0 },
+        { id: 5, productName: "Xbox", price: 7780, quantity: 0 },
+        { id: 6, productName: "Dell Monitor", price: 880, quantity: 0 },
+      ],
+    };
+  }
+
   render() {
     return (
       <div className="container-fluid">
@@ -37,7 +44,21 @@ export default class ShoppingCart extends Component {
   }
   //render ends here
 
-   //executes when the user clicks on + button.
+  //Executes after constructor and render method (includes life cycle of child components, if any) of current component
+  componentDidMount() {
+    //fetch data from data source
+  }
+
+  componentDidUpdate(prevProps, prevState) {}
+
+  //Executes when the current instance of current component is being deleted from memory
+  componentWillUnmount() {}
+
+  componentDidCatch(error, info) {
+    localStorage.lastError = `${error}\n${JSON.stringify(info)}`;
+  }
+
+  //executes when the user clicks on + button.
   handleIncrement = (product, maxValue) => {
     let allProducts = [...this.state.products];
     let index = allProducts.indexOf(product);
@@ -60,7 +81,7 @@ export default class ShoppingCart extends Component {
       allProducts[index].quantity--;
 
       //update the state of current component (parent component)
-      this.setState({products: allProducts})
+      this.setState({ products: allProducts });
     }
   };
 
@@ -70,11 +91,12 @@ export default class ShoppingCart extends Component {
     let allProducts = [...this.state.products];
     let index = allProducts.indexOf(product);
 
-    //delete product based on index
-    allProducts.splice(index,1);
+    if (window.confirm("Are you sure to delete?")) {
+      //delete product based on index
+      allProducts.splice(index, 1);
 
-    //update the state of current component (parent component)
-    this.setState({products: allProducts})
-  }
+      //update the state of current component (parent component)
+      this.setState({ products: allProducts });
+    }
+  };
 }
-
