@@ -8,14 +8,7 @@ export default class ShoppingCart extends Component {
     super(props); //calling super class's constructor
     //initialization of the state
     this.state = {
-      products: [
-        { id: 1, productName: "iPhone", price: 8900, quantity: 0 },
-        { id: 2, productName: "Sony Camera", price: 4500, quantity: 0 },
-        { id: 3, productName: "Samsung QLED TV", price: 7745, quantity: 0 },
-        { id: 4, productName: "iPad Pro", price: 12400, quantity: 0 },
-        { id: 5, productName: "Xbox", price: 7780, quantity: 0 },
-        { id: 6, productName: "Dell Monitor", price: 880, quantity: 0 },
-      ],
+      products: [],
     };
   }
 
@@ -45,9 +38,22 @@ export default class ShoppingCart extends Component {
   //render ends here
 
   //Executes after constructor and render method (includes life cycle of child components, if any) of current component
-  componentDidMount() {
-    //fetch data from data source
-  }
+  componentDidMount = async () => {
+    //send response to server
+    var response = await fetch("http://localhost:5000/products", {
+      method: "GET",
+    });
+
+    //the following code executes after receiving response from server
+    //converting the response body into a JS object array
+    var prods = await response.json();
+
+    //the following code executes after converting response body into JS object array
+    console.log(prods);
+
+    //updating products into component's state
+    this.setState({ products: prods });
+  };
 
   componentDidUpdate(prevProps, prevState) {}
 
