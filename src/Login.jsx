@@ -8,41 +8,49 @@ export default class Login extends Component {
   render() {
     return (
       <div>
-        <h4 className="m-1 p-2 border-bottom">Login</h4>
+        <h4 className="m-1 p-2 border-bottom ">Login</h4>
+        <div class="container h-100">
+          <div class="row h-100 justify-content-center align-items-center">
+            <div class="col-10 col-md-8 col-lg-6">
+              {/*Email starts*/}
+              <div className="form-group form-row col-lg-8">
+                <label className="col-lg-4">Email:</label>
+                <input
+                  type="text"
+                  className="form form-control"
+                  value={this.state.email}
+                  onChange={(event) => {
+                    this.setState({ email: event.target.value });
+                  }}
+                />
+              </div>
+              {/*Email ends*/}
 
-        {/*Email starts*/}
-        <div className="form-group form-row">
-          <label className="col-lg-4">Email:</label>
-          <input
-            type="text"
-            className="form form-control"
-            value={this.state.email}
-            onChange={(event) => {
-              this.setState({ email: event.target.value });
-            }}
-          />
-        </div>
-        {/*Email ends*/}
+              {/*Password starts*/}
+              <div className="form-group form-row col-lg-8 ">
+                <label className="col-lg-4">Password:</label>
+                <input
+                  type="password"
+                  className="form form-control"
+                  value={this.state.password}
+                  onChange={(event) => {
+                    this.setState({ password: event.target.value });
+                  }}
+                />
+              </div>
+              {/*Password ends*/}
 
-        {/*Password starts*/}
-        <div className="form-group form-row">
-          <label className="col-lg-4">Password:</label>
-          <input
-            type="password"
-            className="form form-control"
-            value={this.state.password}
-            onChange={(event) => {
-              this.setState({ password: event.target.value });
-            }}
-          />
-        </div>
-        {/*Password ends*/}
-
-        <div className="text-right">
-          {this.state.message}
-          <button className="btn btn-primary m-1" onClick={this.onLoginClick}>
-            Login
-          </button>
+              <div className="col text-right">
+                {this.state.message}
+                <button
+                  className="btn btn-primary m-1 "
+                  onClick={this.onLoginClick}
+                >
+                  Login
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     );
