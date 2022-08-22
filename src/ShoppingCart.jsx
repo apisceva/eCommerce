@@ -3,7 +3,7 @@ import Product from "./Product";
 
 export default class ShoppingCart extends Component {
   //Executes when the component is mounted
-  //read about this!!!
+
   constructor(props) {
     super(props); //calling super class's constructor
     //initialization of the state
