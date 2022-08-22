@@ -40,7 +40,7 @@ export default class Login extends Component {
               </div>
               {/*Password ends*/}
 
-              <div className="col text-right">
+              <div className="d-grid gap-2 col-4 mx-auto">
                 {this.state.message}
                 <button
                   className="btn btn-primary m-1 "
